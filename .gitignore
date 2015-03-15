@@ -1,0 +1,6 @@
+# compose exclusions
+compose/neo4j/graph.db
+compose/neo4j/log
+compose/rabbitmq/mnesia
+compose/rabbitmq/log
+compose/elasticsearch/data

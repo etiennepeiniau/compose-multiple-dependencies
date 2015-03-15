@@ -1,0 +1,25 @@
+rabbitmq:
+  image: rabbitmq:3.5.0-management
+  ports:
+    - 5672:5672
+    - 15672:15672
+  volumes:
+    - ./compose/rabbitmq/log:/data/log
+    - ./compose/rabbitmq/mnesia:/data/mnesia
+es:
+  image: elasticsearch:1.5.0
+  volumes:
+    - ./compose/elasticsearch/data:/usr/share/elasticsearch/data
+    - ./compose/elasticsearch/config:/usr/share/elasticsearch/config
+  ports: 
+    - 9200:9200
+    - 9300:9300
+  command: elasticsearch -Des.config=/usr/share/elasticsearch/config/elasticsearch.yml
+neo:
+  build: ./compose/neo4j
+  volumes:
+    - ./compose/neo4j/log:/var/log/neo4j
+    - ./compose/neo4j/graph.db:/var/lib/neo4j/data/graph.db
+  ports:
+    - 7474:7474
+    - 1337:1337
